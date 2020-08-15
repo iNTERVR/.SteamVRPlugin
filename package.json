@@ -1,0 +1,34 @@
+{
+  "name": "com.intervr.steam.vr.plugin",
+  "displayName": "iNTERVR Steam VR Plugin",
+  "description": "Steam VR Plugin of iNTERVR",
+  "version": "0.1.0",
+  "unity": "2020.1",
+  "keywords": [],
+  "homepage": "https://github.com/iNTERVR/SteamVRPlugin#readme",
+  "bugs": {
+    "url": "https://github.com/iNTERVR/SteamVRPlugin/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iNTERVR/SteamVRPlugin.git#upm"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "iNTERVR",
+    "email": "ckbang7@gmail.com",
+    "url": "https://github.com/iNTERVR"
+  },
+  "dependencies": {
+    "com.intervr.if": "0.7.0"
+  },
+  "files": [
+    "*.md",
+    "*.meta",
+    "*.asmdef",
+    "*.xml",
+    "Editor",
+    "Runtime",
+    "Samples~"
+  ]
+}
