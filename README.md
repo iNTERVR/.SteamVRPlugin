@@ -1,7 +1,7 @@
-![IMG](https://img.shields.io/badge/pkg%20name-com.intervr.manus.steam.vr.plugin-yellowgreen?style=for-the-badge&logo=appveyor)
+![IMG](https://img.shields.io/badge/pkg%20name-com.intervr.steam.vr.plugin-yellowgreen?style=for-the-badge&logo=appveyor)
 
-![NPM](https://img.shields.io/npm/v/com.intervr.manus.steam.vr.plugin)
-![NPM](https://img.shields.io/npm/l/com.intervr.manus.steam.vr.plugin)
+![NPM](https://img.shields.io/npm/v/com.intervr.steam.vr.plugin)
+![NPM](https://img.shields.io/npm/l/com.intervr.steam.vr.plugin)
 
 # 소개
 
