@@ -8,7 +8,8 @@
         "GUID:560b04d1a97f54a4e82edc0cbbb69285",
         "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
         "GUID:1fbf338ef6b952a448262a7ff7df5fe4",
-        "GUID:35b9c7a103b322f43805bf1744257ac7"
+        "GUID:35b9c7a103b322f43805bf1744257ac7",
+        "GUID:ba171b3dd2a51234ab864770f99741a5"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -17,6 +18,22 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.valvesoftware.unity.openvr",
+            "expression": "",
+            "define": "OPENVR_XR_API"
+        },
+        {
+            "name": "com.unity.xr.legacyinputhelpers",
+            "expression": "",
+            "define": "UNITY_LEGACY_INPUT_HELPERS"
+        },
+        {
+            "name": "com.unity.render-pipelines.universal",
+            "expression": "",
+            "define": "UNITY_URP"
+        }
+    ],
     "noEngineReferences": false
 }
