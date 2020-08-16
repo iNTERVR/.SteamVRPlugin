@@ -11,8 +11,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine.Events;
-using System.Threading;
 using Valve.VR;
+using EcsRx.Zenject;
+using EcsRx.Infrastructure.Extensions;
+using InterVR.IF.VR.Plugin.Steam.Modules;
 
 namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 {
@@ -155,7 +157,7 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
         {
             get
             {
-                return trackedObject.isValid;
+                return trackedObject != null && trackedObject.isValid;
             }
         }
 
@@ -791,12 +793,22 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             applicationLostFocusObject.transform.parent = transform;
             applicationLostFocusObject.SetActive(false);
 
+            var componentBuilder = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IComponentBuilder>();
+            componentBuilder.BuildTracker(this);
+
             if (trackedObject == null)
             {
                 trackedObject = this.gameObject.GetComponent<SteamVR_Behaviour_Pose>();
+            }
 
-                if (trackedObject != null)
-                    trackedObject.onTransformUpdatedEvent += OnTransformUpdated;
+            if (trackedObject != null)
+            {
+                trackedObject.onTransformUpdatedEvent += OnTransformUpdated;
+                var handPhysics = GetComponent<IF_VR_Steam_HandPhysics>();
+                if (handPhysics != null)
+                {
+                    handPhysics.TrackedObject = trackedObject;
+                }
             }
         }
 
@@ -851,6 +863,9 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 
                 yield return null;
             }
+
+            var componentBuilder = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IComponentBuilder>();
+            componentBuilder.Build(this);
         }
 
 

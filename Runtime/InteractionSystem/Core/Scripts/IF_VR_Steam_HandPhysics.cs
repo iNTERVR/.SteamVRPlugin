@@ -34,6 +34,29 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 
         private bool collisionsEnabled = true;
 
+        SteamVR_Behaviour_Pose trackedObject;
+        public SteamVR_Behaviour_Pose TrackedObject
+        {
+            get
+            {
+                return trackedObject;
+            }
+            set
+            {
+                if (trackedObject != null)
+                {
+                    trackedObject.onTransformUpdated.RemoveListener(UpdateHand);
+                }
+
+                trackedObject = value;
+
+                if (trackedObject != null)
+                {
+                    trackedObject.onTransformUpdated.AddListener(UpdateHand);
+                }
+            }
+        }
+
 
         private void Start()
         {
@@ -48,8 +71,14 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             handCollider.transform.localPosition = localPosition;
             handCollider.transform.localRotation = localRotation;
             handCollider.hand = this;
+        }
 
-            GetComponent<SteamVR_Behaviour_Pose>().onTransformUpdated.AddListener(UpdateHand);
+        private void OnDestroy()
+        {
+            if (trackedObject != null)
+            {
+                trackedObject.onTransformUpdated.RemoveListener(UpdateHand);
+            }
         }
 
         // cached transformations

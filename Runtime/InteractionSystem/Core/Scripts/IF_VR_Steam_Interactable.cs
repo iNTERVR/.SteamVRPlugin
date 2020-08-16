@@ -10,6 +10,9 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using Valve.VR;
+using EcsRx.Zenject;
+using EcsRx.Infrastructure.Extensions;
+using InterVR.IF.VR.Plugin.Steam.Modules;
 
 namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 {
@@ -120,6 +123,9 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                     useHandObjectAttachmentPoint = false;
                 }
             }
+
+            var componentBuilder = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IComponentBuilder>();
+            componentBuilder.Build(this);
         }
 
         protected virtual bool ShouldIgnoreHighlight(Component component)

@@ -3,6 +3,7 @@ using InterVR.IF.Installer;
 using InterVR.IF.Modules;
 using InterVR.IF.VR.Modules;
 using InterVR.IF.VR.Plugin.Steam.Example.Installer;
+using InterVR.IF.VR.Plugin.Steam.Modules;
 using UnityEngine;
 
 namespace InterVR.IF.VR.Plugin.Steam.Example
@@ -21,6 +22,7 @@ namespace InterVR.IF.VR.Plugin.Steam.Example
 
             Container.LoadModule<IF_ToolModules>();
             Container.LoadModule<IF_VR_ToolModules>();
+            Container.LoadModule<IF_VR_Steam_ComponentBuilderModule>();
         }
 
         protected override void LoadPlugins()

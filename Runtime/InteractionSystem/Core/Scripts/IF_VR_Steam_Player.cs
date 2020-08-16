@@ -7,16 +7,18 @@
 
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using Valve.VR;
+using EcsRx.Zenject;
+using EcsRx.Infrastructure.Extensions;
+using InterVR.IF.VR.Plugin.Steam.Modules;
 
 namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 {
-	//-------------------------------------------------------------------------
-	// Singleton representing the local VR player/user, with methods for getting
-	// the player's hands, head, tracking origin, and guesses for various properties.
-	//-------------------------------------------------------------------------
-	public class IF_VR_Steam_Player : MonoBehaviour
+    //-------------------------------------------------------------------------
+    // Singleton representing the local VR player/user, with methods for getting
+    // the player's hands, head, tracking origin, and guesses for various properties.
+    //-------------------------------------------------------------------------
+    public class IF_VR_Steam_Player : MonoBehaviour
 	{
 		[Tooltip( "Virtual transform corresponding to the meatspace tracking origin. Devices are tracked relative to this." )]
 		public Transform trackingOriginTransform;
@@ -290,9 +292,12 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 				ActivateRig( rig2DFallback );
 #endif
 			}
+
+			var componentBuilder = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IComponentBuilder>();
+			componentBuilder.Build(this);
         }
 
-        protected virtual void Update()
+		protected virtual void Update()
         {
             if (SteamVR.initializedState != SteamVR.InitializedStates.InitializeSuccess)
                 return;
