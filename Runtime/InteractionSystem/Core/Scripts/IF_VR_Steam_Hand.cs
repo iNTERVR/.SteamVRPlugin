@@ -177,11 +177,19 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                         if (spewDebugText)
                             HandDebugLog("HoverEnd " + _hoveringInteractable.gameObject);
                         _hoveringInteractable.SendMessage("OnHandHoverEnd", this, SendMessageOptions.DontRequireReceiver);
+                        {
+                            var sendMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_ISendMessageToEvent>();
+                            sendMessageToEvent.OnHandHoverEnd(_hoveringInteractable.gameObject, this.gameObject);
+                        }
 
                         //Note: The _hoveringInteractable can change after sending the OnHandHoverEnd message so we need to check it again before broadcasting this message
                         if (_hoveringInteractable != null)
                         {
                             this.BroadcastMessage("OnParentHandHoverEnd", _hoveringInteractable, SendMessageOptions.DontRequireReceiver); // let objects attached to the hand know that a hover has ended
+                            {
+                                var broadcastMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IBroadcastMessageToEvent>();
+                                broadcastMessageToEvent.OnParentHandHoverEnd(this.gameObject, _hoveringInteractable.gameObject);
+                            }
                         }
                     }
 
@@ -192,11 +200,17 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                         if (spewDebugText)
                             HandDebugLog("HoverBegin " + _hoveringInteractable.gameObject);
                         _hoveringInteractable.SendMessage("OnHandHoverBegin", this, SendMessageOptions.DontRequireReceiver);
+                        {
+                            var sendMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_ISendMessageToEvent>();
+                            sendMessageToEvent.OnHandHoverBegin(_hoveringInteractable.gameObject, this.gameObject);
+                        }
 
                         //Note: The _hoveringInteractable can change after sending the OnHandHoverBegin message so we need to check it again before broadcasting this message
                         if (_hoveringInteractable != null)
                         {
                             this.BroadcastMessage("OnParentHandHoverBegin", _hoveringInteractable, SendMessageOptions.DontRequireReceiver); // let objects attached to the hand know that a hover has begun
+                            var broadcastMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IBroadcastMessageToEvent>();
+                            broadcastMessageToEvent.OnParentHandHoverBegin(this.gameObject, _hoveringInteractable.gameObject);
                         }
                     }
                 }
@@ -402,6 +416,10 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             if (currentAttachedObject)
             {
                 currentAttachedObject.SendMessage("OnHandFocusLost", this, SendMessageOptions.DontRequireReceiver);
+                {
+                    var sendMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_ISendMessageToEvent>();
+                    sendMessageToEvent.OnHandFocusLost(currentAttachedObject.gameObject, this.gameObject);
+                }
             }
 
             attachedObject.attachedObject = objectToAttach;
@@ -580,6 +598,10 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             if (spewDebugText)
                 HandDebugLog("AttachObject " + objectToAttach);
             objectToAttach.SendMessage("OnAttachedToHand", this, SendMessageOptions.DontRequireReceiver);
+            {
+                var sendMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_ISendMessageToEvent>();
+                sendMessageToEvent.OnAttachedToHand(objectToAttach.gameObject, this.gameObject);
+            }
         }
 
         public bool ObjectIsAttached(GameObject go)
@@ -676,6 +698,10 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                         attachedObjects[index].attachedObject.SetActive(true);
 
                     attachedObjects[index].attachedObject.SendMessage("OnDetachedFromHand", this, SendMessageOptions.DontRequireReceiver);
+                    {
+                        var sendMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_ISendMessageToEvent>();
+                        sendMessageToEvent.OnDetachedFromHand(attachedObjects[index].attachedObject.gameObject, this.gameObject);
+                    }
                 }
 
                 attachedObjects.RemoveAt(index);
@@ -692,6 +718,10 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                 {
                     newTopObject.SetActive(true);
                     newTopObject.SendMessage("OnHandFocusAcquired", this, SendMessageOptions.DontRequireReceiver);
+                    {
+                        var sendMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_ISendMessageToEvent>();
+                        sendMessageToEvent.OnHandFocusAcquired(newTopObject, this.gameObject);
+                    }
                 }
             }
 
@@ -1125,11 +1155,19 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             if (attachedObject != null)
             {
                 attachedObject.SendMessage("HandAttachedUpdate", this, SendMessageOptions.DontRequireReceiver);
+                {
+                    var sendMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_ISendMessageToEvent>();
+                    sendMessageToEvent.HandAttachedUpdate(attachedObject.gameObject, this.gameObject);
+                }
             }
 
             if (hoveringInteractable)
             {
                 hoveringInteractable.SendMessage("HandHoverUpdate", this, SendMessageOptions.DontRequireReceiver);
+                {
+                    var sendMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_ISendMessageToEvent>();
+                    sendMessageToEvent.HandHoverUpdate(hoveringInteractable.gameObject, this.gameObject);
+                }
             }
         }
 
@@ -1245,6 +1283,10 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                         else if (!attachedInfo.interactable.snapAttachEaseInCompleted)
                         {
                             attachedInfo.interactable.gameObject.SendMessage("OnThrowableAttachEaseInCompleted", this, SendMessageOptions.DontRequireReceiver);
+                            {
+                                var sendMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_ISendMessageToEvent>();
+                                sendMessageToEvent.OnThrowableAttachEaseInCompleted(attachedInfo.interactable.gameObject, this.gameObject);
+                            }
                             attachedInfo.interactable.snapAttachEaseInCompleted = true;
                         }
                     }
@@ -1367,12 +1409,16 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                 applicationLostFocusObject.SetActive(false);
                 UpdateHovering();
                 BroadcastMessage("OnParentHandInputFocusAcquired", SendMessageOptions.DontRequireReceiver);
+                var broadcastMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IBroadcastMessageToEvent>();
+                broadcastMessageToEvent.OnParentHandInputFocusAcquired(this.gameObject);
             }
             else
             {
                 applicationLostFocusObject.SetActive(true);
                 AttachObject(applicationLostFocusObject, IF_VR_Steam_GrabTypes.Scripted, AttachmentFlags.ParentToHand);
                 BroadcastMessage("OnParentHandInputFocusLost", SendMessageOptions.DontRequireReceiver);
+                var broadcastMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IBroadcastMessageToEvent>();
+                broadcastMessageToEvent.OnParentHandInputFocusLost(this.gameObject);
             }
         }
 
@@ -1679,8 +1725,12 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             if (hadOldRendermodel)
                 mainRenderModel.SetSkeletonRangeOfMotion(oldRM_rom);
 
+            var broadcastMessageToEvent = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IBroadcastMessageToEvent>();
             this.BroadcastMessage("SetInputSource", handType, SendMessageOptions.DontRequireReceiver); // let child objects know we've initialized
+            broadcastMessageToEvent.SetInputSource(this.gameObject, handType);
+
             this.BroadcastMessage("OnHandInitialized", deviceIndex, SendMessageOptions.DontRequireReceiver); // let child objects know we've initialized
+            broadcastMessageToEvent.OnHandInitialized(this.gameObject, deviceIndex);
         }
 
         public void SetRenderModel(GameObject prefab)

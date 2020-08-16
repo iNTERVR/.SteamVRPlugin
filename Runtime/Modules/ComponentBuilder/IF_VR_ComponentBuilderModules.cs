@@ -3,7 +3,7 @@ using EcsRx.Infrastructure.Extensions;
 
 namespace InterVR.IF.VR.Plugin.Steam.Modules
 {
-    public class IF_VR_Steam_ComponentBuilderModule : IDependencyModule
+    public class IF_VR_Steam_ComponentBuilderModules : IDependencyModule
     {
         public void Setup(IDependencyContainer container)
         {

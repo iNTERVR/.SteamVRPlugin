@@ -22,7 +22,8 @@ namespace InterVR.IF.VR.Plugin.Steam.Example
 
             Container.LoadModule<IF_ToolModules>();
             Container.LoadModule<IF_VR_ToolModules>();
-            Container.LoadModule<IF_VR_Steam_ComponentBuilderModule>();
+            Container.LoadModule<IF_VR_Steam_ComponentBuilderModules>();
+            Container.LoadModule<IF_VR_Steam_MessageToEventModules>();
         }
 
         protected override void LoadPlugins()
