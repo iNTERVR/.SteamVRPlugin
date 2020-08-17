@@ -1,5 +1,5 @@
 {
-  "name": "com.intervr.steam.vr.plugin",
+  "name": "com.intervr.if.vr.plugin.steam",
   "displayName": "iNTERVR Plugin Steam VR",
   "description": "Steam VR Plugin of iNTERVR",
   "version": "0.3.0",

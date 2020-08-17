@@ -20,7 +20,7 @@ namespace InterVR.IF.VR.Plugin.Steam.Example.Components
         public bool LastHovering;
     }
 
-    public class IF_VR_Steam_Example_InteractableComponent : RegisterAsEntity, IConvertToEntity
+    public class IF_VR_Steam_Example_InteractableComponent : RegisterAsEntity
     {
         public TextMesh GeneralText;
         public TextMesh HoveringText;
@@ -29,7 +29,7 @@ namespace InterVR.IF.VR.Plugin.Steam.Example.Components
             (~IF_VR_Steam_Hand.AttachmentFlags.DetachOthers) &
             (~IF_VR_Steam_Hand.AttachmentFlags.VelocityMovement);
 
-        public void Convert(IEntity entity, IComponent component = null)
+        public override void Convert(IEntity entity, IComponent component = null)
         {
             var c = component == null ? new IF_VR_Steam_Example_Interactable() : component as IF_VR_Steam_Example_Interactable;
 

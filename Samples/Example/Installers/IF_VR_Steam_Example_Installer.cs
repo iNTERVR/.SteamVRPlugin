@@ -20,7 +20,7 @@ namespace InterVR.IF.VR.Plugin.Steam.Example.Installer
         [Serializable]
         public class Settings
         {
-            public string Name = "IF Steam VR Plugin Example IF_VR_Steam_Interactable Installer";
+            public string Name = "IF Steam VR Plugin Example Installer";
         }
     }
 }

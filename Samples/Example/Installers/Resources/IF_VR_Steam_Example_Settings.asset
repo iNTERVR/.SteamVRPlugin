@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61ecbb2b93470854681b99ae5a33ffaa, type: 3}
-  m_Name: IF_VR_Steam_Example_Interactable_Settings
+  m_Name: IF_VR_Steam_Example_Settings
   m_EditorClassIdentifier: 
   settings:
-    Name: IF Steam VR Plugin Example Interactable Installer
+    Name: IF Steam VR Plugin Example Installer
