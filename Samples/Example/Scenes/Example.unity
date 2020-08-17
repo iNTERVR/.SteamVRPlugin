@@ -476,9 +476,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 260467135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6beecba6ae58ea74ca1b6252d48b6b2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bfe9bdae46a0db47b5c14ce21c7dcbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollectionId: 0
+  GeneralText: {fileID: 1758625706}
+  HoveringText: {fileID: 2139910033}
 --- !u!1 &330488227
 GameObject:
   m_ObjectHideFlags: 0
