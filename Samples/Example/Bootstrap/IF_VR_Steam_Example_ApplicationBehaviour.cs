@@ -14,6 +14,16 @@ namespace InterVR.IF.VR.Plugin.Steam.Example
         protected override void BindSystems()
         {
             base.BindSystems();
+
+            Container.BindApplicableSystems(
+                "InterVR.IF.Systems",
+                "InterVR.IF.ViewResolvers");
+            Container.BindApplicableSystems(
+                "InterVR.IF.VR.Systems",
+                "InterVR.IF.VR.ViewResolvers");
+            Container.BindApplicableSystems(
+                "InterVR.IF.VR.Plugin.Steam.Systems",
+                "InterVR.IF.VR.Plugin.Steam.ViewResolvers");
         }
 
         protected override void LoadModules()
