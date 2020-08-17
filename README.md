@@ -20,6 +20,11 @@ InterFramework(IF) Virtual Reality(VR) Steam VR Plugin은 iNTERVR에서 [유니�
   * `Player`설정 패널에서 `Other Settings`를 펼칩니다.
   * `Scripting Runtime Version`이 `.NET 4.x`로 설정되었는지 확인합니다.
 
+## SteamVR SDK 설치
+
+* SteamVR플러그인을 사용하기 위해선 우선, [ValveSoftware]의 [SteamVR Unity Plugin]을 설치해야 합니다.
+* 설치 후 Windiws -> SteamVR Input을 통해 입력 바인딩을 기본값으로 하여 Save & Generate 합니다.
+
 ## 유니티 프로젝트 매니페스트에 패키지 추가하기
 
 * 프로젝트의 `Packages`디렉토리를 탐색합니다.
@@ -56,3 +61,5 @@ InterFramework(IF) Virtual Reality(VR) Steam VR Plugin은 iNTERVR에서 [유니�
 [유니티]: https://unity3d.com/
 [최신-릴리즈(NPM)]: https://www.npmjs.com/package/com.intervr.if.vr.plugin.steam
 [프로젝트-매니페스트]: https://docs.unity3d.com/Manual/upm-manifestPrj.html
+[ValveSoftware]: https://github.com/ValveSoftware
+[SteamVR Unity Plugin]: https://github.com/ValveSoftware/steamvr_unity_plugin
