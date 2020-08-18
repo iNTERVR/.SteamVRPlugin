@@ -31,8 +31,10 @@ namespace InterVR.IF.VR.Plugin.Steam.Example
             base.LoadModules();
 
             Container.LoadModule<IF_ToolModules>();
-            Container.LoadModule<IF_VR_ToolModules>();
+            Container.LoadModule<IF_VR_InterfaceModules>();
+            Container.LoadModule<IF_VR_StatusModules>();
             Container.LoadModule<IF_VR_Steam_InterfaceModules>();
+            Container.LoadModule<IF_VR_Steam_StatusModules>();
             Container.LoadModule<IF_VR_Steam_ComponentBuilderModules>();
             Container.LoadModule<IF_VR_Steam_MessageToEventModules>();
         }
