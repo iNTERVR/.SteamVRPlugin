@@ -1,10 +1,4 @@
-﻿using EcsRx.Entities;
-using EcsRx.Unity.Extensions;
-using EcsRx.Unity.MonoBehaviours;
-using EcsRx.Zenject;
-using InterVR.IF.VR.Defines;
-using InterVR.IF.VR.Plugin.Steam.InteractionSystem;
-using UnityEngine;
+﻿using InterVR.IF.VR.Defines;
 using Valve.VR;
 
 namespace InterVR.IF.VR.Plugin.Steam.Extensions
