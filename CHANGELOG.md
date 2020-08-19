@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.1.0] - 2020-08-18
+
+### Changed
+
+- ComponentBuilder의 BuildTracker함수에서 SteamVR_Behaviour_Pose컴포넌트를 찾을 때 활성화 된 컴포넌트만 찾는것으로 수정
+
 ## [1.0.0] - 2020-08-18
 
 ### Changed

@@ -91,7 +91,7 @@ namespace InterVR.IF.VR.Plugin.Steam.Modules
             if (hand.handType == SteamVR_Input_Sources.Any)
                 return;
 
-            var poses = GameObject.FindObjectsOfType<SteamVR_Behaviour_Pose>(true);
+            var poses = GameObject.FindObjectsOfType<SteamVR_Behaviour_Pose>();
             foreach (var pose in poses)
             {
                 if (pose.inputSource != hand.handType)
