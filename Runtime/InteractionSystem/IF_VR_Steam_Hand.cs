@@ -883,6 +883,10 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             // - don't need to find the device
             if (noSteamVRFallbackCamera)
             {
+                {
+                    var componentBuilder = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IComponentBuilder>();
+                    componentBuilder.Build(this);
+                }
                 yield break;
             }
 
@@ -899,8 +903,10 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                 yield return null;
             }
 
-            var componentBuilder = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IComponentBuilder>();
-            componentBuilder.Build(this);
+            {
+                var componentBuilder = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_Steam_IComponentBuilder>();
+                componentBuilder.Build(this);
+            }
         }
 
 
@@ -1495,12 +1501,18 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 
         public void TriggerHapticPulse(ushort microSecondsDuration)
         {
+            if (trackedObject == null)
+                return;
+
             float seconds = (float)microSecondsDuration / 1000000f;
             hapticAction.Execute(0, seconds, 1f / seconds, 1, handType);
         }
 
         public void TriggerHapticPulse(float duration, float frequency, float amplitude)
         {
+            if (trackedObject == null)
+                return;
+
             hapticAction.Execute(0, duration, frequency, amplitude, handType);
         }
 
@@ -1524,20 +1536,14 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 
         public IF_VR_Steam_GrabTypes GetGrabStarting(IF_VR_Steam_GrabTypes explicitType = IF_VR_Steam_GrabTypes.None)
         {
-            var vrInterfaceModule = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_IInterface>();
-            var handEntity = vrInterfaceModule.GetHandEntity(handType.ConvertTo());
-            var hand = handEntity.GetComponent<IF_VR_Hand>();
             var grabStatusModule = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_IGrabStatus>();
-            return grabStatusModule.GetGrabStarting(hand, explicitType.ConvertTo()).ConvertTo();
+            return grabStatusModule.GetGrabStarting(gameObject.GetEntity(), explicitType.ConvertTo()).ConvertTo();
         }
 
         public IF_VR_Steam_GrabTypes GetGrabEnding(IF_VR_Steam_GrabTypes explicitType = IF_VR_Steam_GrabTypes.None)
         {
-            var vrInterfaceModule = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_IInterface>();
-            var handEntity = vrInterfaceModule.GetHandEntity(handType.ConvertTo());
-            var hand = handEntity.GetComponent<IF_VR_Hand>();
             var grabStatusModule = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_IGrabStatus>();
-            return grabStatusModule.GetGrabEnding(hand, explicitType.ConvertTo()).ConvertTo();
+            return grabStatusModule.GetGrabEnding(gameObject.GetEntity(), explicitType.ConvertTo()).ConvertTo();
         }
 
         public bool IsGrabEnding(GameObject attachedObject)
@@ -1555,20 +1561,14 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 
         public bool IsGrabbingWithType(IF_VR_Steam_GrabTypes type)
         {
-            var vrInterfaceModule = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_IInterface>();
-            var handEntity = vrInterfaceModule.GetHandEntity(handType.ConvertTo());
-            var hand = handEntity.GetComponent<IF_VR_Hand>();
             var grabStatusModule = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_IGrabStatus>();
-            return grabStatusModule.IsGrabbingWithType(hand, type.ConvertTo());
+            return grabStatusModule.IsGrabbingWithType(gameObject.GetEntity(), type.ConvertTo());
         }
 
         public bool IsGrabbingWithOppositeType(IF_VR_Steam_GrabTypes type)
         {
-            var vrInterfaceModule = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_IInterface>();
-            var handEntity = vrInterfaceModule.GetHandEntity(handType.ConvertTo());
-            var hand = handEntity.GetComponent<IF_VR_Hand>();
             var grabStatusModule = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_IGrabStatus>();
-            return grabStatusModule.IsGrabbingWithOppositeType(hand, type.ConvertTo());
+            return grabStatusModule.IsGrabbingWithOppositeType(gameObject.GetEntity(), type.ConvertTo());
         }
 
         public IF_VR_Steam_GrabTypes GetBestGrabbingType()
@@ -1578,11 +1578,8 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 
         public IF_VR_Steam_GrabTypes GetBestGrabbingType(IF_VR_Steam_GrabTypes preferred, bool forcePreference = false)
         {
-            var vrInterfaceModule = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_IInterface>();
-            var handEntity = vrInterfaceModule.GetHandEntity(handType.ConvertTo());
-            var hand = handEntity.GetComponent<IF_VR_Hand>();
             var grabStatusModule = EcsRxApplicationBehaviour.Instance.Container.Resolve<IF_VR_IGrabStatus>();
-            return grabStatusModule.GetBestGrabbingType(hand, preferred.ConvertTo(), forcePreference).ConvertTo();
+            return grabStatusModule.GetBestGrabbingType(gameObject.GetEntity(), preferred.ConvertTo(), forcePreference).ConvertTo();
         }
 
 

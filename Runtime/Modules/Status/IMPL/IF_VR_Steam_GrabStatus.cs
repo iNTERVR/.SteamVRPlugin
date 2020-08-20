@@ -4,24 +4,16 @@ using InterVR.IF.VR.Components;
 using InterVR.IF.VR.Modules;
 using InterVR.IF.VR.Defines;
 using InterVR.IF.VR.Plugin.Steam.Extensions;
+using EcsRx.Entities;
+using EcsRx.Unity.Extensions;
 
 namespace InterVR.IF.VR.Plugin.Steam.Modules
 {
     public class IF_VR_Steam_GrabStatus : IF_VR_IGrabStatus
     {
-        IF_VR_Steam_Hand convertSteamVRHand(IF_VR_Hand hand)
+        public IF_VR_GrabType GetBestGrabbingType(IEntity handEntity, IF_VR_GrabType preferred, bool forcePreference = false)
         {
-            IF_VR_Steam_Hand steamVRHand;
-            if (hand.Type == IF_VR_HandType.Left)
-                steamVRHand = IF_VR_Steam_Player.instance.leftHand;
-            else
-                steamVRHand = IF_VR_Steam_Player.instance.rightHand;
-            return steamVRHand;
-        }
-
-        public IF_VR_GrabType GetBestGrabbingType(IF_VR_Hand hand, IF_VR_GrabType preferred, bool forcePreference = false)
-        {
-            var steamVRHand = convertSteamVRHand(hand);
+            var steamVRHand = handEntity.GetUnityComponent<IF_VR_Steam_Hand>();
             if (steamVRHand.noSteamVRFallbackCamera)
             {
                 if (Input.GetMouseButton(0))
@@ -52,9 +44,9 @@ namespace InterVR.IF.VR.Plugin.Steam.Modules
             return IF_VR_Steam_GrabTypes.None.ConvertTo();
         }
 
-        public IF_VR_GrabType GetGrabEnding(IF_VR_Hand hand, IF_VR_GrabType explicitType = IF_VR_GrabType.None)
+        public IF_VR_GrabType GetGrabEnding(IEntity handEntity, IF_VR_GrabType explicitType = IF_VR_GrabType.None)
         {
-            var steamVRHand = convertSteamVRHand(hand);
+            var steamVRHand = handEntity.GetUnityComponent<IF_VR_Steam_Hand>();
             if (explicitType != IF_VR_Steam_GrabTypes.None.ConvertTo())
             {
                 if (steamVRHand.noSteamVRFallbackCamera)
@@ -88,9 +80,9 @@ namespace InterVR.IF.VR.Plugin.Steam.Modules
             return IF_VR_Steam_GrabTypes.None.ConvertTo();
         }
 
-        public IF_VR_GrabType GetGrabStarting(IF_VR_Hand hand, IF_VR_GrabType explicitType = IF_VR_GrabType.None)
+        public IF_VR_GrabType GetGrabStarting(IEntity handEntity, IF_VR_GrabType explicitType = IF_VR_GrabType.None)
         {
-            var steamVRHand = convertSteamVRHand(hand);
+            var steamVRHand = handEntity.GetUnityComponent<IF_VR_Steam_Hand>();
             if (explicitType != IF_VR_Steam_GrabTypes.None.ConvertTo())
             {
                 if (steamVRHand.noSteamVRFallbackCamera)
@@ -124,9 +116,9 @@ namespace InterVR.IF.VR.Plugin.Steam.Modules
             return IF_VR_Steam_GrabTypes.None.ConvertTo();
         }
 
-        public bool IsGrabbingWithOppositeType(IF_VR_Hand hand, IF_VR_GrabType type)
+        public bool IsGrabbingWithOppositeType(IEntity handEntity, IF_VR_GrabType type)
         {
-            var steamVRHand = convertSteamVRHand(hand);
+            var steamVRHand = handEntity.GetUnityComponent<IF_VR_Steam_Hand>();
             if (steamVRHand.noSteamVRFallbackCamera)
             {
                 if (Input.GetMouseButton(0))
@@ -147,9 +139,9 @@ namespace InterVR.IF.VR.Plugin.Steam.Modules
             return false;
         }
 
-        public bool IsGrabbingWithType(IF_VR_Hand hand, IF_VR_GrabType type)
+        public bool IsGrabbingWithType(IEntity handEntity, IF_VR_GrabType type)
         {
-            var steamVRHand = convertSteamVRHand(hand);
+            var steamVRHand = handEntity.GetUnityComponent<IF_VR_Steam_Hand>();
             if (steamVRHand.noSteamVRFallbackCamera)
             {
                 if (Input.GetMouseButton(0))

@@ -69,6 +69,12 @@ namespace InterVR.IF.VR.Plugin.Steam.Modules
             }
             entity.AddComponent(handComponent);
 
+            if (hand.trackedObject == null)
+            {
+                // used fallback
+                return;
+            }
+
             var pool = EcsRxApplicationBehaviour.Instance.EntityDatabase.GetCollection();
             pool.CreateEntity(new IF_FollowEntityBlueprint(IF.Defines.IF_UpdateMomentType.Update,
                 hand.trackedObject.gameObject.GetEntity(),
