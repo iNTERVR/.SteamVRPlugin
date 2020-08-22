@@ -13,7 +13,7 @@ InterFramework(IF) Virtual Reality(VR) Steam VR Plugin은 iNTERVR에서 [유니�
 
 ## 구성
 
-SteamVR Plugin은 아래의 패키지들로 구성되어 있다.
+SteamVR Plugin은 아래의 패키지들로 구성되어 있습니다.
 
 * primary package
   * com.intervr.if.vr.plugin.steam
