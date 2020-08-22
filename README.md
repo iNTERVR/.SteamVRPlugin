@@ -11,6 +11,20 @@ InterFramework(IF) Virtual Reality(VR) Steam VR Plugin은 iNTERVR에서 [유니�
 
 # 시작하기
 
+## 구성
+
+SteamVR Plugin은 아래의 패키지들로 구성되어 있다.
+
+* primary package
+  * com.intervr.if.vr.plugin.steam
+* dependencies
+  * com.intervr.if.vr
+    * com.intervr.if
+      * com.intervr.ts.ecsrx.unity
+        * com.intervr.ts.ecsrx
+        * com.intervr.ts.zenject
+        * com.intervr.ts.unirx
+
 ## 프로젝트 설정하기
 
 * [유니티]를 통해 비어있는 3D 템플릿으로 새로운 프로젝트를 생성하거나 기존 프로젝트를 불러옵니다.
@@ -23,7 +37,7 @@ InterFramework(IF) Virtual Reality(VR) Steam VR Plugin은 iNTERVR에서 [유니�
 ## SteamVR SDK 설치
 
 * SteamVR플러그인을 사용하기 위해선 우선, [ValveSoftware]의 [SteamVR Unity Plugin]을 설치해야 합니다.
-* 설치 후 Windiws -> SteamVR Input을 통해 입력 바인딩을 기본값으로 하여 Save & Generate 합니다.
+* 설치 후 Windows -> SteamVR Input을 통해 입력 바인딩을 기본값으로 하여 Save & Generate 합니다.
 
 ## 유니티 프로젝트 매니페스트에 패키지 추가하기
 
