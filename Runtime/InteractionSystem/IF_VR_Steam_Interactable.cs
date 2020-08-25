@@ -37,11 +37,11 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 
         public delegate void OnAttachedToHandDelegate(IF_VR_Steam_Hand hand);
         public delegate void OnDetachedFromHandDelegate(IF_VR_Steam_Hand hand);
-        public delegate bool OnHandHoverBeginDelegate(IF_VR_Steam_Interactable interactable, IF_VR_Steam_Hand hand, bool isDestroying, bool isHovering, bool wasHovering);
-        public delegate void OnHandHoverEndDelegate(IF_VR_Steam_Interactable interactable, IF_VR_Steam_Hand hand, bool isDestroying, bool isHovering, bool wasHovering);
+        public delegate bool OnHandHoverBeginDelegate(IF_VR_Steam_Interactable interactable, IF_VR_Steam_Hand hand);
+        public delegate void OnHandHoverEndDelegate(IF_VR_Steam_Interactable interactable, IF_VR_Steam_Hand hand);
         public delegate void OnUpdateDelegate(IF_VR_Steam_Interactable interactable);
-        public delegate void OnDestroyDelegate();
-        public delegate void OnDisableDelegate();
+        public delegate void OnDestroyDelegate(IF_VR_Steam_Interactable interactable);
+        public delegate void OnDisableDelegate(IF_VR_Steam_Interactable interactable);
 
         public event OnAttachedToHandDelegate onAttachedToHand;
         public event OnDetachedFromHandDelegate onDetachedFromHand;
@@ -271,7 +271,7 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 
             if (onHandHoverBegin != null)
             {
-                if (onHandHoverBegin.Invoke(this, hand, isDestroying, isHovering, wasHovering) == true)
+                if (onHandHoverBegin.Invoke(this, hand) == true)
                 {
                     // consumed in there
                     return;
@@ -303,7 +303,7 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                     Destroy(highlightHolder);
             }
 
-            onHandHoverEnd?.Invoke(this, hand, isDestroying, isHovering, wasHovering);
+            onHandHoverEnd?.Invoke(this, hand);
         }
 
         protected virtual void Update()
@@ -381,7 +381,7 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             if (highlightHolder != null)
                 Destroy(highlightHolder);
 
-            onDestroy?.Invoke();
+            onDestroy?.Invoke(this);
         }
 
 
@@ -397,7 +397,7 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             if (highlightHolder != null)
                 Destroy(highlightHolder);
 
-            onDisable?.Invoke();
+            onDisable?.Invoke(this);
         }
     }
 }

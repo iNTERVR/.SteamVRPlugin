@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.4.3] - 2020-08-25
+
+### Added
+
+- IF_VR_Steam_Interactable에 Event/Delegate들 인자값 수정 보완
+
 ## [1.4.2] - 2020-08-25
 
 ### Added
