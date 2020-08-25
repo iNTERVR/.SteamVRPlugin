@@ -1,7 +1,14 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
-## [1.4.1] - 2020-08-22
+## [1.4.2] - 2020-08-25
+
+### Added
+
+- IF_VR_Steam_Interactable에 Event/Delegate들에 Interactable(this) 추가
+- IF_VR_Steam_Interactable에 onUpdate Event/Delegate 추가
+
+## [1.4.1] - 2020-08-25
 
 ### Added
 
