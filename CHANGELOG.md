@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.4.1] - 2020-08-22
+
+### Added
+
+- IF_VR_Steam_Interactable에 Event/Delegate (onHandHoverBegin, onHandHoverEnd, onDestroy, onDisable)들 추가
+
 ## [1.4.0] - 2020-08-22
 
 ### Changed

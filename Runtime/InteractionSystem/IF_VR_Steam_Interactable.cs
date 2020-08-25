@@ -6,8 +6,6 @@
 //=============================================================================
 
 using UnityEngine;
-using UnityEngine.Events;
-using System.Collections;
 using System.Collections.Generic;
 using Valve.VR;
 using EcsRx.Zenject;
@@ -39,9 +37,17 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 
         public delegate void OnAttachedToHandDelegate(IF_VR_Steam_Hand hand);
         public delegate void OnDetachedFromHandDelegate(IF_VR_Steam_Hand hand);
+        public delegate bool OnHandHoverBeginDelegate(IF_VR_Steam_Hand hand, bool isDestroying, bool isHovering, bool wasHovering);
+        public delegate void OnHandHoverEndDelegate(IF_VR_Steam_Hand hand, bool isDestroying, bool isHovering, bool wasHovering);
+        public delegate void OnDestroyDelegate();
+        public delegate void OnDisableDelegate();
 
         public event OnAttachedToHandDelegate onAttachedToHand;
         public event OnDetachedFromHandDelegate onDetachedFromHand;
+        public event OnHandHoverBeginDelegate onHandHoverBegin;
+        public event OnHandHoverEndDelegate onHandHoverEnd;
+        public event OnDestroyDelegate onDestroy;
+        public event OnDisableDelegate onDisable;
 
 
         [Tooltip("Specify whether you want to snap to the hand's object attachment point, or just the raw hand")]
@@ -60,7 +66,7 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
         public SteamVR_Skeleton_Poser skeletonPoser;
 
         [Tooltip("Should the rendered hand lock on to and follow the object")]
-        public bool handFollowTransform= true;
+        public bool handFollowTransform = true;
 
 
         [Tooltip("Set whether or not you want this interactible to highlight when hovering over it")]
@@ -261,6 +267,15 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 
             hoveringHands.Add(hand);
 
+            if (onHandHoverBegin != null)
+            {
+                if (onHandHoverBegin.Invoke(hand, isDestroying, isHovering, wasHovering) == true)
+                {
+                    // consumed in there
+                    return;
+                }
+            }
+
             if (highlightOnHover == true && wasHovering == false)
             {
                 CreateHighlightRenderers();
@@ -285,6 +300,8 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                 if (highlightOnHover && highlightHolder != null)
                     Destroy(highlightHolder);
             }
+
+            onHandHoverEnd?.Invoke(hand, isDestroying, isHovering, wasHovering);
         }
 
         protected virtual void Update()
@@ -360,6 +377,7 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             if (highlightHolder != null)
                 Destroy(highlightHolder);
 
+            onDestroy?.Invoke();
         }
 
 
@@ -374,6 +392,8 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 
             if (highlightHolder != null)
                 Destroy(highlightHolder);
+
+            onDisable?.Invoke();
         }
     }
 }
