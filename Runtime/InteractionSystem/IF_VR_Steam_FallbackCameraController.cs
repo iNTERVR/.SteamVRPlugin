@@ -7,6 +7,7 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SpatialTracking;
 
 namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 {
@@ -32,6 +33,12 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 		//-------------------------------------------------
 		void Update()
 		{
+			var trackedPoseDriver = GetComponent<TrackedPoseDriver>();
+			if (trackedPoseDriver)
+            {
+				trackedPoseDriver.enabled = false;
+            }
+
 			float forward = 0.0f;
 			if ( Input.GetKey( KeyCode.W ) || Input.GetKey( KeyCode.UpArrow ) )
 			{

@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.4.5] - 2020-09-12
+
+### Update
+
+- Dependency
+
+### Added
+
+- Falloff camera controller가 활성활 될 때 Unity XR TrackedDevice 작동을 해제
+
 ## [1.4.3] - 2020-08-25
 
 ### Added
