@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.4.6] - 2020-09-12
+
+### Update
+
+- Dependency
+
+### Changed
+
+- IF_VR_Player의 [SteamVR]을 Rig의 루트로 이동하여 Fallback과 VR상황에 대응하도록 수정
+
 ## [1.4.5] - 2020-09-12
 
 ### Update
