@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.4.7] - 2020-09-16
+
+### Added
+
+- Oculus와 같은 장비는 SteamVR 초기화에 실패하지만 실제 VR뷰를 제공하므로 Fallback하지 않도록 한다.
+
 ## [1.4.6] - 2020-09-12
 
 ### Update

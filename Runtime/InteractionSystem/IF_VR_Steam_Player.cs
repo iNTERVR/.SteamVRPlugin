@@ -11,6 +11,7 @@ using Valve.VR;
 using EcsRx.Zenject;
 using EcsRx.Infrastructure.Extensions;
 using InterVR.IF.VR.Plugin.Steam.Modules;
+using UnityEngine.XR;
 
 namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
 {
@@ -282,7 +283,7 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             while (SteamVR.initializedState == SteamVR.InitializedStates.None || SteamVR.initializedState == SteamVR.InitializedStates.Initializing)
                 yield return null;
 
-			if ( SteamVR.instance != null )
+			if ( SteamVR.instance != null || XRSettings.isDeviceActive )
 			{
 				ActivateRig( rigSteamVR );
 			}
