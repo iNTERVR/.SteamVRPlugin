@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.4.8] - 2020-09-20
+
+### Update
+
+- Dependency: iNTERVR.IF.VR
+
 ## [1.4.7] - 2020-09-16
 
 ### Added

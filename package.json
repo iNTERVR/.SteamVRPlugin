@@ -2,7 +2,7 @@
   "name": "com.intervr.if.vr.plugin.steam",
   "displayName": "iNTERVR Plugin Steam VR",
   "description": "Steam VR Plugin of iNTERVR",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "unity": "2020.1",
   "keywords": [],
   "homepage": "https://github.com/iNTERVR/SteamVRPlugin#readme",
@@ -20,7 +20,7 @@
     "url": "https://github.com/iNTERVR"
   },
   "dependencies": {
-    "com.intervr.if.vr": "1.2.0"
+    "com.intervr.if.vr": "1.2.1"
   },
   "files": [
     "*.md",
