@@ -1277,7 +1277,7 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                     }
 
 
-                    if (attachedInfo.interactable.attachEaseIn)
+                    if (attachedInfo.interactable != null && attachedInfo.interactable.attachEaseIn)
                     {
                         float t = IF_VR_Steam_Util.RemapNumberClamped(Time.time, attachedInfo.attachTime, attachedInfo.attachTime + attachedInfo.interactable.snapAttachEaseInTime, 0.0f, 1.0f);
                         if (t < 1.0f)

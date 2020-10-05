@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.4.10] - 2020-10-05
+
+### Added
+
+- Hand의 FixedUpdate에서 attachedInfo.interactable의 null체크를 추가
+
 ## [1.4.9] - 2020-10-05
 
 ### Added
