@@ -1410,6 +1410,10 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
             return realNumbers;
         }
 
+        public void SetFocus(bool hasFocus)
+        {
+            OnInputFocus(hasFocus);
+        }
 
         //-------------------------------------------------
         protected virtual void OnInputFocus(bool hasFocus)

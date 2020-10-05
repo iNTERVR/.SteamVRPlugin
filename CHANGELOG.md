@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.4.9] - 2020-10-05
+
+### Added
+
+- Hand에 SetFocus(bool hasFocus)추가하여 시스템 이벤트 없이도 Focus 처리 가능하도록 기능 추가
+
 ## [1.4.8] - 2020-09-20
 
 ### Update
