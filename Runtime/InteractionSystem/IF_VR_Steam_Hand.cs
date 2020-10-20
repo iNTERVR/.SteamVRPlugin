@@ -939,7 +939,7 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                 CheckHoveringForTransform(mainRenderModel.GetControllerPosition(controllerHoverComponent), scaledHoverRadius / 2f, ref closestDistance, ref closestInteractable, Color.blue);
             }
 
-            if (useFingerJointHover && mainRenderModel != null && mainRenderModel.IsHandVisibile())
+            if (useFingerJointHover && mainRenderModel != null/* && mainRenderModel.IsHandVisibile()*/)
             {
                 float scaledHoverRadius = fingerJointHoverRadius * Mathf.Abs(SteamVR_Utils.GetLossyScale(this.transform));
                 CheckHoveringForTransform(mainRenderModel.GetBonePosition((int)fingerJointHover), scaledHoverRadius / 2f, ref closestDistance, ref closestInteractable, Color.yellow);
@@ -1454,7 +1454,7 @@ namespace InterVR.IF.VR.Plugin.Steam.InteractionSystem
                 Gizmos.DrawWireSphere(mainRenderModel.GetControllerPosition(controllerHoverComponent), scaledHoverRadius / 2);
             }
 
-            if (useFingerJointHover && mainRenderModel != null && mainRenderModel.IsHandVisibile())
+            if (useFingerJointHover && mainRenderModel != null/* && mainRenderModel.IsHandVisibile()*/)
             {
                 Gizmos.color = Color.yellow;
                 float scaledHoverRadius = fingerJointHoverRadius * Mathf.Abs(SteamVR_Utils.GetLossyScale(this.transform));

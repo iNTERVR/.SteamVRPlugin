@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.4.11] - 2020-10-21
+
+### Removed
+
+- 호버 스피어 관련 장갑 사용시 hand render model을 두개 사용하는데 이때 HandVisible이 문제가 발생하여 일단 조건을 해제함
+
 ## [1.4.10] - 2020-10-05
 
 ### Added
